@@ -1,0 +1,70 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DrawCalendar</title>
+<script>
+<script type="text/javascript"> 
+	function calcHeight(){
+	
+	var the_height=
+	document.getElementById('the_iframe').contentWindow.
+	document.body.scrollHeight;
+	
+	document.getElementById('the_iframe').height=
+	the_height;
+	
+	document.getElementById('the_iframe').style.overflow = "hidden";
+	}
+	//
+</script>
+<style>
+	#header {
+		position : relative;
+		max-width: 1250px;
+		margin: 0 auto;
+		text-align: center;
+	}
+	#container {
+		position : relative;
+		max-width: 1250px;
+		margin: 0 auto;
+		text-align: center;
+	}
+	iframe {
+		position: absolute;
+		display: block;
+		margin: 0 auto;
+		width: 100%;
+		min-height:500px;"
+		overflow-x: hidden; 
+		overflow: auto;  
+	}
+	#footer {
+		position : relative;
+		max-width: 1250px;
+		margin: 0 auto;
+		text-align: center;
+	}
+</style>
+</head>
+<body>
+<div id="header">
+<h1>헤더ㅓㅓㅓㅓㅓ</h1>
+</div>
+<div id="container">
+	<a href="login.jsp">로그인</a><br />
+	<a href="insert_all_member.jsp">회원가입</a><br />
+	<iframe id="the_iframe" src="calendar.jsp" frameborder="0" scrolling="no" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+30)+'px';">
+	
+	</iframe>
+</div>
+<div id="footer">
+
+<h1>푸터ㅓㅓㅓㅓㅓ</h1>
+</div>
+
+</body>
+</html>

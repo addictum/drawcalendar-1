@@ -1,0 +1,38 @@
+package com.project.draw;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.project.draw.com_member.Com_memberVO;
+import com.project.draw.com_member.domain.Com_memberDAO;
+
+	@RunWith(SpringJUnit4ClassRunner.class)
+	@ContextConfiguration(locations="classpath:root-context.xml")
+	public class AAA {
+
+		@Test
+		public void ttest() {
+			
+
+			ApplicationContext ctx = new GenericXmlApplicationContext("classpath:root-context.xml");
+			Com_memberDAO dao = ctx.getBean("com_memberDAO", Com_memberDAO.class);
+			
+//			BrandDAO dao = new BrandDAO();
+			
+			Com_memberVO vo = new Com_memberVO();
+			vo.setId("eehdgus2");
+			vo.setPassword("eehdgus2");
+			vo.setEmail("eehdgus2@gmail.com");
+			vo.setPhone("821076190020");
+			vo.setAdrress("서울시 수명로2가길 22");
+			vo.setReg_num(1234567890);
+			vo.setBrand_name("NIKE");
+			
+			dao.insert_com_member(vo);
+		}
+		
+	}

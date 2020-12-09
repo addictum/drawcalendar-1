@@ -1,0 +1,140 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<style>
+	#container {
+		position: relative;
+		margin: 0 auto;
+		max-width: 1250px;
+		text-align: center;
+	}
+
+	table {
+		position: relative;
+		width: 800px;
+		margi: 0 auto;
+	}
+	
+	tr {
+		height: 100px;
+	}
+	
+	th, td {
+		width: 300px;
+	}
+</style>
+</head>
+<body>
+<div id="container">
+	<div class="nav">
+				<button class="nav-btn go-prev" onclick="prevWeek()">&lt;</button>
+				<button class="nav-btn go-today" onclick="goToday()">Today</button>
+				<button class="nav-btn go-next" onclick="nextWeek()">&gt;</button>
+	</div>
+	<div class="week">
+		<table class="weekTable">
+			<tr class=tableHead></tr>
+			
+		</table>
+	</div>
+</div>
+<script>
+	
+	let date = new Date();
+
+	const renderWeek = () => {
+		const thisYear = date.getFullYear();
+		const thisMonth = date.getMonth();
+		const thisDate = date.getDate();
+		const thisDay = date.getDay();
+		
+		const preLast = new Date(thisYear, thisMonth, 0);
+		const thisLast = new Date(thisYear, thisMonth+1, 0);
+		const nextLast = new Date(thisYear, thisMonth+2, 0);
+		
+		const preMonth = preLast.getMonth()+1;
+		const nextMonth = nextLast.getMonth()+1;
+		
+		const PLDate = preLast.getDate();
+		const TLDate = thisLast.getDate();
+		const NLDate = nextLast.getDate();
+		
+		const weekStart = new Date(thisYear, thisMonth, thisDate-thisDay);
+		const weekEnd = new Date(thisYear, thisMonth, thisDate + (6-thisDay));
+	
+		const startDate = weekStart.getDate();
+		const endDate = weekEnd.getDate();	
+		const startMonth = weekStart.getMonth()+1;
+		
+		const weekDate = [];
+		
+		if(endDate < 7) {
+			if(startMonth !== thisMonth+1){
+				for(let i = startDate; i < PLDate+1; i++){
+					weekDate.push(preMonth+'.'+i);
+				}
+				for(let i = 1; 1 < 7-weekDate.length+1; i ++){
+					weekDate.push((thisMonth+1)+'.'+i);
+				}
+			}
+			if(startMonth === thisMonth+1) {
+				for(let i = startDate; i < TLDate+1; i++){
+					weekDate.push((thisMonth+1)+'.'+i);
+				}
+				for(let i = 1; 1 < 7-weekDate.length+1; i ++){
+					weekDate.push(nextMonth+'.'+i);
+				}
+			}
+				
+		}
+		
+		if(startDate >= 1 && startDate < TLDate-6 ){
+			for(let i = startDate; 1 < 7-weekDate.length+1; i ++){
+				weekDate.push((thisMonth+1)+'.'+i);
+			}
+		}
+
+		weekDate.forEach((date, i) => {
+			var spDate = date.split('.');
+			weekDate[i] = '<td class="date">' + date + '<td>';
+		})
+		
+		var html = '';
+		for(let i = 8; i < 20; i++) {
+			html += '<tr><td class="'+i+'" >'+i+'</td>'
+			for(let i = 0; i < 6; i++) {
+				html += '<td></td>'
+			}
+			html += '</tr>'
+		}
+		console.log(html);
+		
+		document.querySelector('.tableHead').innerHTML = weekDate.join('');
+		$('.weekTable').append(html);
+	}
+	renderWeek();
+	
+	const prevWeek = () => {
+		date.setDate(date.getDate()-7);	
+		renderWeek();
+	}
+	
+	const nextWeek = () => {
+		date.setDate(date.getDate()+7);
+		renderWeek();
+	} 
+	
+	const goToday = () => {
+		date = new Date();
+		renderWeek();
+	}  
+	
+	
+</script>
+</body>
+</html>

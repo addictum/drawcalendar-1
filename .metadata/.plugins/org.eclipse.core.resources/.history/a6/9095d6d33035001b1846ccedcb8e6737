@@ -1,0 +1,5 @@
+package com.project.draw.draw_site.domain;
+
+public class Draw_siteDAO {
+
+}

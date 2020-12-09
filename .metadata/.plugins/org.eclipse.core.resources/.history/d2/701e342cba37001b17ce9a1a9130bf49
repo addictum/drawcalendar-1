@@ -1,0 +1,51 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DrawCalendar</title>
+<style>
+	#header {
+		position : relative;
+		max-width: 1250px;
+		margin: 0 auto;
+		text-align: center;
+	}
+	#container {
+		position : relative;
+		max-width: 1250px;
+		margin: 0 auto;
+		text-align: center;
+	}
+	ifram {
+		position: relative;
+		width: 1000px;
+		height: 100%;
+	}
+	#footer {
+		position : relative;
+		max-width: 1250px;
+		margin: 0 auto;
+		text-align: center;
+	}
+</style>
+</head>
+<body>
+<div id="header">
+<h1>헤더ㅓㅓㅓㅓㅓ</h1>
+</div>
+<div id="container">
+	<a href="login.jsp">로그인</a><br />
+	<a href="insert_all_member.jsp">회원가입</a><br />
+	<iframe src="calendar.jsp" frameborder="0" scrolling="no">
+	
+	</iframe>
+</div>
+<div id="footer">
+
+<h1>푸터ㅓㅓㅓㅓㅓ</h1>
+</div>
+
+</body>
+</html>

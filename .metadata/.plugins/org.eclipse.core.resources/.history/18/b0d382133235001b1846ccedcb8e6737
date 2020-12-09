@@ -1,0 +1,5 @@
+package com.project.draw.items.domain;
+
+public interface ItemsDAO {
+
+}

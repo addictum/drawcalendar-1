@@ -1,0 +1,14 @@
+package com.project.draw.com_member.domain;
+
+import java.util.List;
+
+import com.project.draw.com_member.Com_memberVO;
+
+public interface Com_memberDAO {
+
+	public void insert_com_member(Com_memberVO vo);
+	public void update_com_member(Com_memberVO vo);
+	public void delete_com_member(Com_memberVO vo);
+	public Com_memberVO get_com_member(Com_memberVO vo);
+	public List<Com_memberVO> get_com_member_list(Com_memberVO vo);
+}

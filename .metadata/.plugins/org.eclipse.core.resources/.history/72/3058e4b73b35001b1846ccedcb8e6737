@@ -1,0 +1,61 @@
+package com.project.draw.com_member.controller;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.project.draw.com_member.Com_memberVO;
+import com.project.draw.com_member.service.Com_member_service;
+
+@Controller
+public class Com_member_controller {
+	
+	@Autowired
+	Com_member_service service;
+	
+	@RequestMapping(value="/insert_com_member.do")
+	public String insert_com_member(Com_memberVO vo) {
+		service.insert_com_member(vo);
+		return "redirect:index.jsp";
+	}
+	
+	@RequestMapping(value="/update_com_member.do")
+	public String update_com_member(Com_memberVO vo) {
+		service.update_com_member(vo);
+
+		return "redirect:index.jsp";
+	}
+	
+	@RequestMapping(value="/delete_com_member.do")
+	public String delete_com_member(Com_memberVO vo) {
+		service.delete_com_member(vo);
+		
+		return "redirect:index.jsp";
+	}
+	
+	@RequestMapping(value="/login.do")
+	public String select_com_member(Com_memberVO vo, HttpSession session) {
+		Com_memberVO member = service.select_com_member(vo);
+		if(member != null) {
+			if(vo.getId().equals(member.getId())&&vo.getPassword().equals(member.getPassword())) {
+				System.out.println("로그인 성공");
+//				session.setAttribute("brand_code", );
+				return "index.jsp";
+			}
+		}
+		System.out.println("로그인 실패");
+		return "redirect:index.jsp";
+	}
+	
+	@RequestMapping(value="/select_com_member_list.do")
+	public String select_com_member_list(Com_memberVO vo) {
+		service.select_com_member_list(vo);
+		
+		return "redirect:index.jsp";
+	}
+	
+	
+}
+
